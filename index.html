@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width,user-scalable=no" name="viewport">
+    <!--禁止将数字变为电话号码-->
+    <meta name="format-detection" content="telephone=no" />
+    <!--iphone设备中的safari私有meta标签 允许全屏模式浏览，隐藏浏览器导航栏-->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <!--iphone中safari顶端的状态条的样式 默认值为default（白色），可以定为black（黑色）和black-translucent（灰色半透明）-->
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>移动web-全屏滚动页面</title>
+    <style>
+        body {
+            font-size: 62.5%;
+            font-family: "Microsoft YaHei", Arial;
+            overflow-x: hidden;
+            overflow-y: auto;
+            margin: 0;
+            padding: 0;
+        }
+        
+        img {
+            width: 100%;
+            top: 50%;
+            transform: translate(0, -50%);
+            display: block;
+            position: absolute;
+        }
+        
+        .title {
+            display: block;
+            position: absolute;
+            text-align: center;
+            bottom: 5rem;
+            left: 50%;
+            transform: translate(-50%, 0);
+            color: white;
+            background-color: #ccc;
+            padding: 0.6rem 1.5rem;
+            border-radius: 1rem;
+            font-size: 1rem;
+        }
+        
+        .page {
+            position: relative;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <div class="page page-1"><img src="./img/1.jpg">
+            <div class="title">这是第一页</div>
+        </div>
+        <div class="page page-2"><img src="./img/2.jpg">
+            <div class="title">这是第二页</div>
+        </div>
+        <div class="page page-3"><img src="./img/3.jpg">
+            <div class="title">这是第三页</div>
+        </div>
+        <div class="page page-4"><img src="./img/4.jpg">
+            <div class="title">这是最后一页</div>
+        </div>
+        <div class="page page-5">
+            
+        </div>
+    </div>
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
+    <!--<script src="./js/common/jquery-3.2.1.js"></script>-->
+    <script src="./js/common/slip.js"></script>
+
+    <script>
+        $(function () {
+            // 文档就绪
+            console.log("ready in index!");
+            // var container = document.getElementById('container');
+            // var pages = document.querySelectorAll('.page');
+            // var slip = Slip(container, 'y').webapp(pages);
+            //回滚到第一页
+            Slip(document.getElementById('container'), 'y').webapp().end(function () {
+                if (this.page === 4) location.reload();
+            });
+        });
+    </script>
+</body>
+
+</html>
